@@ -12,7 +12,6 @@ export class DisplayComponent implements OnInit {
   @Input() rows;
   @Input() tableName;
   @Output() selectedRow = new EventEmitter();
-  private zmienna = 12;
   constructor() { }
 
   ngOnInit() {

@@ -1,17 +1,48 @@
+<!--<app-display [isTableShown]="isTableShown"-->
+<!--             tableName="Users"-->
+<!--               [columnNames]="users | keys"-->
+<!--               [rows]="users | filter: keyToFilterOn: valueToFilterOn | sortBy: propertyToSortBy"-->
+<!--             (selectedRow)="select($event)">-->
+
+<!--</app-display>-->
+
+<!--<app-control [keys]="users | keys"-->
+<!--             [propertiesToSortBy]="['name', 'surname', 'professionName']"-->
+<!--             [values]="users-->
+<!--         | allValuesForProp: keyToFilterOn-->
+<!--         | unique"-->
+<!--             [isTableShown]="isTableShown"-->
+<!--             (toggleTable)="isTableShown =! isTableShown"-->
+<!--             (keyToFilterOn)="keyToFilterOn = $event"-->
+<!--             (valueToFilterOn)="valueToFilterOn = $event"-->
+<!--             (propertyToSortBy)="propertyToSortBy = $event">-->
+<!--</app-control>-->
+
+
+<!--<span *ngFor="let fib of this">{{fib}} </span>-->
+<!--<hr>-->
+<!--<div appShowDescription="description of the div">-->
+<!--  What is this div about?-->
+<!--</div>-->
+
+
+<!--<div *appColorGenerator="3; let color" [style.color]="color">{{color}}</div>-->
+<!--<button (click)="fetchToDos()"> fetch</button>-->
+
+<app-selected-user></app-selected-user>
 <app-display [isTableShown]="isTableShown"
-             tableName="Users"
-               [columnNames]="users | keys"
-               [rows]="users | filter: keyToFilterOn: valueToFilterOn | sortBy: propertyToSortBy"
-             (selectedRow)="select($event)">
+             [columnNames]="users$ | async  | keys"
+             [rows]="users$ | async  | filter: keyToFilterOn: valueToFilterOn | sortBy: propertyToSortBy"
+             (selectedRow)="selectedUser.next($event)"
+          >
 
 </app-display>
 
-<app-control [keys]="users | keys"
-             [propertiesToSortBy]="['name', 'surname', 'professionName']"
-             [values]="users
+<app-control [keys]="users$ | async | keys"
+             [propertiesToSortBy]="users$ | async  | keys"
+             [values]="users$ | async
          | allValuesForProp: keyToFilterOn
          | unique"
-             [isTableShown]="isTableShown"
              (toggleTable)="isTableShown =! isTableShown"
              (keyToFilterOn)="keyToFilterOn = $event"
              (valueToFilterOn)="valueToFilterOn = $event"
@@ -19,49 +50,11 @@
 </app-control>
 
 
-<span *ngFor="let fib of this">{{fib}} </span>
-<hr>
-<div appShowDescription="description of the div">
-  What is this div about?
-</div>
+<div
+  *ngFor="let user of users$ | async"
+>{{user.name}} </div>
 
+<button (click)="userToAdd.next(sampleUserToAdd)">add User</button>
 
-<div *appColorGenerator="3; let color" [style.color]="color">{{color}}</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<button (click)="select()"> selectUser </button>-->
-<!--<app-display [isTableShown]="isTableShown"-->
-<!--             [columnNames]="toDos | keys"-->
-<!--             [rows]="toDos | filter: keyToFilterOn: valueToFilterOn | sortBy: propertyToSortBy">-->
-
-<!--</app-display>-->
-
-<!--<app-control [keys]="toDos | keys"-->
-<!--             [propertiesToSortBy]="toDos | keys"-->
-<!--             [values]="toDos-->
-<!--         | allValuesForProp: keyToFilterOn-->
-<!--         | unique"-->
-<!--             (toggleTable)="isTableShown =! isTableShown"-->
-<!--             (keyToFilterOn)="keyToFilterOn = $event"-->
-<!--             (valueToFilterOn)="valueToFilterOn = $event"-->
-<!--             (propertyToSortBy)="propertyToSortBy = $event">-->
-<!--</app-control>-->
-
+<button (click)="userToRemove.next(sampleUserToRemove)">remove User</button>
 

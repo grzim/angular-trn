@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../../helpers/models/user';
 import {SelectedUserService} from '../../services/selected-user.service';
+import {Observable} from 'rxjs';
+import {startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-selected-user',
@@ -9,12 +11,11 @@ import {SelectedUserService} from '../../services/selected-user.service';
 })
 export class SelectedUserComponent implements OnInit {
 
-  selectedUser: User;
+  selectedUser$: Observable<User | {}>;
   constructor(private selectedUserService: SelectedUserService) {
-    this.selectedUser = this.selectedUserService.selectedUser;
+    this.selectedUser$ = this.selectedUserService.selectedUser.pipe(startWith({}));
   }
 
   ngOnInit() {
   }
-
 }

@@ -18,6 +18,7 @@ import { DisplayComponent } from './components/display/display.component';
 import { SelectedUserComponent } from './components/selected-user/selected-user.component';
 import { ShowDescriptionDirective } from './directives/show-description.directive';
 import { ColorGeneratorDirective } from './directives/color-generator.directive';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { ColorGeneratorDirective } from './directives/color-generator.directive'
     ColorGeneratorDirective
   ],
   imports: [
-    BrowserModule
+    BrowserModule, HttpClientModule
   ],
   providers: [UsersService, KeysPipe],
   bootstrap: [AppComponent]

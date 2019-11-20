@@ -1,5 +1,5 @@
 
-export const unique = arr => [...new Set(arr)];
+export const unique: any = arr => [...new Set(arr)];
 
 const isUpperCase = char => char === char.toUpperCase();
 

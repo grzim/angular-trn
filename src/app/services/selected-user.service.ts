@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import {User} from '../helpers/models/user';
+import {Observable, Subject} from 'rxjs';
+import {tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SelectedUserService {
 
-  selectedUser: User;
-  constructor() {}
-  selectUser(user: User) {
-    console.log(user);
-    this.selectedUser = user;
+  selectedUser = new Subject<User>();
+  selectedUser$: Observable<User>;
+  constructor() {
+    this.selectedUser$ = this.selectedUser.asObservable();
   }
 }
