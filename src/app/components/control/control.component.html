@@ -1,0 +1,27 @@
+<button (click)="toggleTable.emit()">{{isTableShown ? 'hide' : 'show'}} table</button>
+
+<div *ngFor="let prop of propertiesToSortBy">
+  <button (click)="propertyToSortBy.emit(prop)">Sort by {{prop | wordSpacing}} </button>
+</div>
+
+<label>
+  key:
+  <select (change)="keyToFilterOn.emit(getKey($event.target.value))">
+    <option value="-1">
+      -
+    </option>
+    <option *ngFor="let key of keys ; index as index" [value]="index">{{key}}</option>
+  </select>
+</label>
+
+<label>
+  <select (change)="valueToFilterOn.emit(getValue($event.target.value))">
+    <option [value]="-1">
+      -
+    </option>
+    <option *ngFor="let value of values; index as index"
+            [value]="index">
+      {{value}}
+    </option>
+  </select>
+</label>

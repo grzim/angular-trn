@@ -1,0 +1,36 @@
+<button (click)="toggleTable.emit()">{{isTableShown ? 'hide' : 'show'}} table</button>
+
+<div>
+  Sort by name <button (click)="setPropertyToSortBy('name')">by name</button>
+</div>
+<div>
+  Sort by age <button (click)="setPropertyToSortBy('age')">by age</button>
+</div>
+<div>
+  Sort by profession name
+  <button (click)="setPropertyToSortBy('professionName')">by profession name</button>
+</div>
+
+<label>
+  key:
+  <select (change)="setKeyToFilterOn($event.target.value)">
+    <option value="-1">
+      -
+    </option>
+    <option *ngFor="let key of this.users[0] | keys ; index as index" [value]="index">{{key}}</option>
+  </select>
+</label>
+
+<label>
+  <select (change)="setValueToFilterOn($event.target.value)">
+    <option [value]="-1">
+      -
+    </option>
+    <option *ngFor="let value of users
+             | allValuesForProp: localKeyToFilterOn
+             | unique; index as index"
+            [value]="index">
+      {{value}}
+    </option>
+  </select>
+</label>

@@ -1,0 +1,22 @@
+<table *ngIf="isTableShown; else tableHidden">
+  <tr>
+    <th>
+      Users:
+    </th>
+  </tr>
+  <tr>
+    index
+    <td *ngFor="let key of users | keys">
+      {{key | wordSpacing}}
+    </td>
+  </tr>
+  <tr *ngFor="let user of users | filter: keyToFilterOn: valueToFilterOn | sortBy: propertyToSortBy; index as i;">
+    {{i}}
+    <td *ngFor="let key of users | keys; first as first" [style.color]="'red' | when: first">
+      {{user[key]}}
+    </td>
+  </tr>
+</table>
+<ng-template #tableHidden>
+  table hidden
+</ng-template>

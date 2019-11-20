@@ -1,0 +1,24 @@
+<table *ngIf="isTableShown; else tableHidden">
+  <tr>
+    <th>
+      {{tableName}}:
+    </th>
+  </tr>
+  <tr>
+    index
+    <td *ngFor="let name of columnNames">
+      {{name | wordSpacing}}
+    </td>
+  </tr>
+  <tr *ngFor="let row of rows; index as i;">
+    {{i}}
+    <td *ngFor="let name of columnNames; first as first"
+        [style.color]="'red' | when: first"
+        (click)="selectedRow.emit(row)">
+      {{row[name]}}
+    </td>
+  </tr>
+</table>
+<ng-template #tableHidden>
+  table hidden
+</ng-template>
