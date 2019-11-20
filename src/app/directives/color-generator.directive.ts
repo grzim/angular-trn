@@ -10,9 +10,8 @@ export class ColorGeneratorDirective {
     this.vcr.clear();
     const gen = colorGenerator();
     for (let i = 0 ; i < val; i++) {
-      const value = gen.next().value;
       this.vcr.createEmbeddedView(this.tpl, {
-        $implicit: value
+        $implicit: gen.next().value
       });
     }
   }

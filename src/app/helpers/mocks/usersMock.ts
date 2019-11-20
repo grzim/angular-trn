@@ -1,6 +1,6 @@
 import {User} from '../models/user';
 
-export const users = [
+export const usersMock = [
   new User('Adam', 'Nowacki', 33, 'professor', 'AGH'),
   new User('Adrian', 'Kępa', 41, 'professor', 'AGH'),
   new User('Florian', 'Nuch', 33, 'nurse', 'Hospital'),
